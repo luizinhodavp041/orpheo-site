@@ -1,17 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useParallax } from "@/hooks/useParallax";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
-  const { ref, y } = useParallax(100);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
 
   return (
-    <section
-      ref={ref}
-      className="relative h-screen flex items-center justify-center overflow-hidden bg-slate-900"
-    >
+    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-slate-900">
       {/* Background Pattern */}
       <motion.div
         className="absolute inset-0 opacity-20"
